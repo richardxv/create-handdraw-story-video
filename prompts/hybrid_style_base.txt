@@ -1,0 +1,12 @@
+Hand-drawn children's book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look

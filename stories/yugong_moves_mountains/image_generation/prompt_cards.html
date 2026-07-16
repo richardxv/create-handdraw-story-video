@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>愚公移山 · Image Generation Workspace</title>
+<style>
+:root{--paper:#f8f4e8;--ink:#27241f;--accent:#a85f36;--card:#fffdf6}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}main{max-width:980px;margin:auto;padding:32px 20px 80px}
+h1{margin-bottom:4px}.lead{margin-top:0;color:#675f53}.steps,.card{background:var(--card);border:1px solid #ded5c6;border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 3px 12px #6d5d4512}
+.card-head{display:flex;justify-content:space-between;gap:12px;align-items:center;font-weight:700}code{background:#eee6d8;padding:4px 8px;border-radius:7px}pre{white-space:pre-wrap;max-height:360px;overflow:auto;background:#24211d;color:#f9f3e7;padding:16px;border-radius:12px;font:13px/1.55 ui-monospace,monospace}
+button{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}.story{font-size:18px}.refs{color:#675f53}input{width:19px;height:19px;vertical-align:-3px}.done-card{opacity:.55}
+</style></head><body><main>
+<h1>愚公移山</h1><p class="lead">Browser Image Generation Workspace · progress is stored locally in this browser.</p>
+<section class="steps"><h2>Workflow</h2><ol><li>Generate <b>style_reference.png</b> from <code>style_reference_prompt.txt</code>.</li><li>Upload it and generate <b>character_sheet.png</b> from <code>character_sheet_prompt.txt</code>.</li><li>For every scene, upload both references, copy the card prompt, generate one image, and save it in <code>../keyframes/</code> with the shown filename.</li><li>Prefer 3:4 PNG. Reject text, speech bubbles, signatures, logos, watermarks, character drift, and style drift.</li></ol><p><b>Recommended order:</b> style_reference → character_sheet → scene_01 → scene_02 → scene_03 → scene_05 → scene_06 → scene_08 → scene_04 → scene_07</p></section>
+
+    <article class="card" id="scene-01">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="1"> Scene 01 · 大山挡路</label>
+        <code>scene_01.png</code>
+      </div>
+      <p class="story">愚公家门前，挡着两座大山</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-01">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+An elderly Chinese farmer standing before two enormous mountains that block the narrow path out of a small ancient village, tiny houses below, generous sky and negative space, clear sense of scale
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-01', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-02">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="2"> Scene 02 · 朴素愿望</label>
+        <code>scene_02.png</code>
+      </div>
+      <p class="story">他想让孩子们，看见更远的地方</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-02">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+The old farmer gently pointing beyond the mountains while several children stand beside him and imagine the distant open world, warm family expressions, restrained ancient Chinese rural setting
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-02', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-03">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="3"> Scene 03 · 全家动手</label>
+        <code>scene_03.png</code>
+      </div>
+      <p class="story">于是，全家人一起挖山</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-03">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+A multigenerational family beginning to dig at the foot of a mountain with wooden hoes, baskets and simple tools, cooperative gestures, small figures against the rock face
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-03', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-04">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="4"> Scene 04 · 一点一点</label>
+        <code>scene_04.png</code>
+      </div>
+      <p class="story">石头很硬，他们每天只搬走一点点</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-04">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+Close storybook view of worn hands placing rough stones into a bamboo carrying basket, the old farmer and family working steadily in the background, visible effort without danger
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-04', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-05">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="5"> Scene 05 · 路人嘲笑</label>
+        <code>scene_05.png</code>
+      </div>
+      <p class="story">有人笑他：你怎么可能搬走大山？</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-05">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+A skeptical passerby speaking to the elderly farmer beside piles of newly moved stones, the farmer rests calmly on his hoe, child-friendly expressions and no aggressive confrontation
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-05', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-06">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="6"> Scene 06 · 回答</label>
+        <code>scene_06.png</code>
+      </div>
+      <p class="story">只要不停下来，山就会越来越小</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-06">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+The old farmer smiling gently while children and grandchildren continue carrying baskets behind him, a small but clearly visible notch already opened in the mountain
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-06', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-07">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="7"> Scene 07 · 岁月接力</label>
+        <code>scene_07.png</code>
+      </div>
+      <p class="story">一年又一年，一筐又一筐</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-07">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+Poetic passage of time at the mountain path: older and younger family members pass baskets hand to hand, subtle seasonal traces, the path gradually becoming wider and brighter
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-07', this)">Copy prompt</button>
+    </article>
+
+    <article class="card" id="scene-08">
+      <div class="card-head">
+        <label><input class="done" type="checkbox" data-id="8"> Scene 08 · 山外天空</label>
+        <code>scene_08.png</code>
+      </div>
+      <p class="story">从未停下的脚步，终于让大山让了路</p>
+      <p class="refs">Upload the same <b>style_reference.png</b> and <b>character_sheet.png</b> for this generation.</p>
+      <pre id="prompt-08">Hand-drawn children&#x27;s book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+A new open path between the mountains at sunrise, children running toward the vast bright sky beyond while the elderly farmer and family watch together from behind, uplifting yet restrained ending
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.</pre>
+      <button type="button" onclick="copyPrompt('prompt-08', this)">Copy prompt</button>
+    </article>
+</main><script>
+const key='web-image-kit:愚公移山';
+const state=JSON.parse(localStorage.getItem(key)||'{}');
+document.querySelectorAll('.done').forEach(x=>{x.checked=!!state[x.dataset.id];setCard(x);x.addEventListener('change',()=>{state[x.dataset.id]=x.checked;localStorage.setItem(key,JSON.stringify(state));setCard(x)})});
+function setCard(x){x.closest('.card').classList.toggle('done-card',x.checked)}
+async function copyPrompt(id,button){await navigator.clipboard.writeText(document.getElementById(id).innerText);const old=button.innerText;button.innerText='Copied';setTimeout(()=>button.innerText=old,1000)}
+</script></body></html>

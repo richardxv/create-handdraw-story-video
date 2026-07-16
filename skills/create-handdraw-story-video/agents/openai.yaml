@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hand-drawn Story Video"
+  short_description: "Turn short ideas into hand-drawn story videos"
+  default_prompt: "Use $create-handdraw-story-video to turn my one-sentence idea into a hand-drawn story video."

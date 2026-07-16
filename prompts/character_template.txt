@@ -1,0 +1,22 @@
+# 角色描述模板
+#
+# 使用说明：
+# 1. 根据你的故事角色，填写以下模板中的 {{占位符}}
+# 2. 将填写后的内容传给 StylePromptBuilder 的 character_desc 参数
+# 3. 保持描述简洁，重点突出外貌特征和穿着（便于 AI 保持一致）
+
+## 示例角色配置（小男孩 + 奶奶 + 小鸡的故事）
+
+Character consistency rules (must follow strictly):
+- Little boy: round cute face, spiky black hair, big expressive eyes, wearing green long-sleeve shirt and black pants, Q-version proportions, head-to-body ratio around 1:2.5
+- Grandma: gray hair tied in a neat bun, blue top, black pants, kind and gentle expression, slightly plump build
+- Chickens: simple cute round yellow chick with thin legs; mother hen slightly larger with red comb
+- Props: wooden rural gate with latch, tiled roof house, red wooden stool, bamboo winnowing basket, black umbrella, straw pile, puddles on muddy ground
+
+## 通用角色描述模板
+
+Character consistency rules (must follow strictly):
+{{character_descriptions}}
+
+Props and environment elements:
+{{props_description}}

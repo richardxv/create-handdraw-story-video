@@ -1,0 +1,26 @@
+{
+  "story_title": "愚公移山",
+  "mode": "web_image_model",
+  "reference_scene_id": 2,
+  "generation_order": [
+    "style_reference",
+    "character_sheet",
+    "scene_01",
+    "scene_02",
+    "scene_03",
+    "scene_05",
+    "scene_06",
+    "scene_08",
+    "scene_04",
+    "scene_07"
+  ],
+  "output_directory": "../keyframes",
+  "accepted_formats": [
+    "png",
+    "jpg",
+    "jpeg",
+    "webp"
+  ],
+  "preferred_format": "png",
+  "preferred_aspect_ratio": "3:4"
+}

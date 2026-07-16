@@ -1,0 +1,83 @@
+{
+  "story_title": "没有星星的夜晚",
+  "total_duration_estimate": 21.9,
+  "scenes": [
+    {
+      "id": 1,
+      "scene_name": "藏在心里的话",
+      "visual_description": "Azhen, a shy young Chinese woman, watches Aqiang from a few steps away beside a quiet old cinema booth at dusk; she holds a small film can close to her chest while he adjusts the wooden door, one clear tender unspoken-love moment, vertical composition, clean upper area, no written text",
+      "on_screen_text": "阿帧爱上了阿强",
+      "duration": 2.9,
+      "emotion": "warm",
+      "key_actions": ["阿帧悄悄望向阿强"],
+      "environment_effects": ["wind"],
+      "notes": "阿帧与阿强均为年轻成年人；画面中禁止任何文字、标志、水印。"
+    },
+    {
+      "id": 2,
+      "scene_name": "无星之约",
+      "visual_description": "Azhen and Aqiang stand outside the tiny old cinema booth beneath a deep cloud-covered night sky with no visible stars; Azhen looks upward anxiously and Aqiang waits quietly, a small town lane fading into generous paper space, one readable beat, no written text",
+      "on_screen_text": "可那晚，天空没有一颗星星",
+      "duration": 3.2,
+      "emotion": "sad",
+      "key_actions": ["两人仰望无星的天空"],
+      "environment_effects": ["wind"],
+      "notes": "天空必须无星；气氛失落但温柔；禁止画内文字。"
+    },
+    {
+      "id": 3,
+      "scene_name": "灯也熄灭",
+      "visual_description": "Inside the old wooden cinema booth at night, the single hanging bulb has just gone dark; Azhen and Aqiang appear as soft silhouettes, Azhen lowers her head while holding a round film can, faint cool window light outlines their faces, child-friendly emotional clarity, no written text",
+      "on_screen_text": "连小镇的灯，也忽然熄灭了",
+      "duration": 3.2,
+      "emotion": "tense",
+      "key_actions": ["灯熄灭后阿帧低下头"],
+      "environment_effects": ["none"],
+      "notes": "停电场景仍需看清人物轮廓；不要恐怖感；禁止画内文字。"
+    },
+    {
+      "id": 4,
+      "scene_name": "胶片里的星星",
+      "visual_description": "Close intimate view of Azhen at a small wooden table, cutting tiny star-shaped openings from an old strip of photographic film while Aqiang watches with gentle surprise; a small battery lantern casts amber light over scissors, film curls and careful hands, single inventive action, no written text",
+      "on_screen_text": "阿帧把旧胶片，剪成了星星",
+      "duration": 3.2,
+      "emotion": "surprising",
+      "key_actions": ["阿帧剪出星形胶片"],
+      "environment_effects": ["none"],
+      "notes": "本场作为风格参考图；手部结构自然；胶片上不可出现字母数字。"
+    },
+    {
+      "id": 5,
+      "scene_name": "人造星空",
+      "visual_description": "Azhen lifts a small warm lantern behind star-cut film attached to the cinema booth window; dozens of soft golden star-shaped light spots scatter across the warm paper wall and over Aqiang's amazed face, dark blue night around them, magical yet handmade, no written text",
+      "on_screen_text": "光穿过去，满墙亮起了星光",
+      "duration": 3.2,
+      "emotion": "joyful",
+      "key_actions": ["阿帧举灯照亮星形胶片"],
+      "environment_effects": ["particle"],
+      "notes": "星光必须明显来自灯与胶片投影，不是真实夜空；禁止画内文字。"
+    },
+    {
+      "id": 6,
+      "scene_name": "终于说出口",
+      "visual_description": "Under handmade projected stars inside the old cinema booth, Azhen faces Aqiang with brave gentle eyes and one hand over her heart; Aqiang listens closely, warm gold light on their faces, respectful distance, emotionally clear confession without speech bubbles, no written text",
+      "on_screen_text": "“没有星星，我也还是喜欢你。”",
+      "duration": 3.3,
+      "emotion": "warm",
+      "key_actions": ["阿帧鼓起勇气告白"],
+      "environment_effects": ["particle"],
+      "notes": "绝不画对白框或字幕；人物表情自然克制。"
+    },
+    {
+      "id": 7,
+      "scene_name": "两片星空相遇",
+      "visual_description": "Aqiang silently lights a second small lantern behind another piece of star-cut film; two fields of warm projected stars meet on the wall as Azhen and Aqiang's soft shadows lean gently toward each other, quiet old cinema booth, tender earned ending, generous negative space, no written text",
+      "on_screen_text": "阿强点亮另一盏灯，让两片星空相遇",
+      "duration": 2.9,
+      "emotion": "warm",
+      "key_actions": ["阿强点亮第二盏灯", "两人的影子轻轻靠近"],
+      "environment_effects": ["particle"],
+      "notes": "以影子靠近表达回应，不要夸张亲密动作；禁止画内文字。"
+    }
+  ]
+}

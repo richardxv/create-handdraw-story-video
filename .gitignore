@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Local runtime outputs
+output/
+.uploads/
+
+# Generated story media; keep text, scripts, prompts and browser workspaces
+stories/*/keyframes/
+stories/**/*.mp4
+stories/**/*.wav
+stories/**/wipe_review.png
+stories/**/review_frames/
+stories/**/keyframe_review.json
+
+# Local debugging and superseded documentation
+src/_debug_*.py
+README_CURRENT.md
+
+# Optional local fonts and large media
+assets/fonts/*.ttf
+assets/fonts/*.otf
+assets/keyframes/*
+!assets/keyframes/.gitkeep

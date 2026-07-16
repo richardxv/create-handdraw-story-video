@@ -1,0 +1,33 @@
+Hand-drawn children's book illustration in loose expressive black ink sketch style with delicate cross-hatching shading for volume and texture, simple cute cartoon characters with big eyes and minimal clean details, clean white paper background with subtle ground texture, generous negative space, emotional nostalgic atmosphere, highly consistent character design throughout the entire series.
+
+Art style rules (must follow strictly):
+- Loose black ink lines with natural hand-drawn wobble
+- Cross-hatching shading on clothes, ground, and objects for depth
+- Selective warm color accents only on key elements (avoid flat unshaded colors)
+- Soft natural lighting with gentle highlights on surfaces
+- Warm heartfelt and nostalgic atmosphere
+- In the exact same art style across all images in the series
+- Generous negative space, never cluttered composition
+
+Negative prompt: realistic, photorealistic, 3d render, blurry, deformed hands, extra limbs, text in image, watermark, low quality, flat unshaded color, western disney style, heavy anime look, cluttered composition, modern elements, urban setting, neon colors, digital art look
+
+Character consistency rules:
+Character consistency rules:
+- Yu Gong: elderly Chinese farmer, lean and sturdy, silver hair in a simple topknot, short gray beard, indigo coarse-cloth robe, straw sandals, calm kind eyes.
+- Family: consistent multigenerational rural Chinese family in simple muted earth-tone ancient clothing.
+- Children: round expressive faces, small proportions, energetic but natural poses.
+- Tools: wooden hoes, bamboo shoulder poles and woven carrying baskets; no modern objects.
+
+Scene description:
+A new open path between the mountains at sunrise, children running toward the vast bright sky beyond while the elderly farmer and family watch together from behind, uplifting yet restrained ending
+
+Output constraints:
+- Portrait orientation, consistent framing and visual language across the series
+- Keep a clean area for later subtitle compositing
+- Do not render captions, letters, logos, signatures, or watermarks inside the image
+
+Consistency guard for this scene:
+- Camera distance may change, but the art style must not change.
+- Preserve exactly the same character proportions, facial design, ink-line thickness, cross-hatching density, paper texture, watercolor softness, and level of detail as the uploaded reference images.
+- A close-up must not become more realistic, sharper, or more detailed than medium and wide shots.
+- Do not add any text, speech bubbles, letters, logo, signature, or watermark.
