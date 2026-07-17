@@ -91,7 +91,7 @@ def _master_instruction(
     theme = str(data.get("theme", "")).strip()
     theme_line = f"Theme: {theme}\n" if theme else ""
     return f"""You are the image-production assistant for one complete hand-drawn children's story video.
-Complete this whole image set in this same conversation. Do not ask me to repeat individual scene prompts.
+Complete this whole image set autonomously in this same conversation. Do not ask me questions, request confirmation, request uploads, or ask me to repeat any prompt.
 
 Story title: {data.get('story_title', 'Untitled story')}
 {theme_line}
@@ -99,9 +99,9 @@ Story title: {data.get('story_title', 'Untitled story')}
 Production sequence:
 1. First generate one 3:4 portrait master style image named style_reference.png using the prompt below.
 2. Then generate one 3:4 portrait character consistency image named character_sheet.png, using the style image you just made as its visual reference.
-3. Then generate every scene below in the listed order. Reuse both generated references for every scene and keep character identity, proportions, ink density, paper texture, palette, and detail level fixed across the whole set.
+3. Internally lock the style image and character sheet as the visual bible. Then immediately generate every scene below in the listed order, keeping character identity, proportions, ink density, paper texture, palette, and detail level fixed across the whole set.
 
-If this website cannot reuse images created earlier in the same conversation, stop after the two reference images and ask me only to upload style_reference.png and character_sheet.png once. After I upload them, continue with every remaining scene without asking for new prompts.
+Never stop for user confirmation between images. If this website cannot explicitly reuse images created earlier in the conversation, still continue the full sequence by applying this visual bible and every fixed character/style constraint in the prompts below. When the platform limits the number of images per response, continue in sequential batches without asking me what to do next.
 
 Global requirements:
 - Prefer 1080x1440 PNG, 3:4 portrait.
@@ -178,7 +178,7 @@ def export_web_kit(
         "preferred_aspect_ratio": "3:4",
         "preferred_handoff": "web_model_master_instruction.txt",
         "initial_uploads": [],
-        "fallback_uploads": ["style_reference.png", "character_sheet.png"],
+        "interaction_mode": "autonomous_no_confirmation",
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -197,7 +197,7 @@ h1{{margin-bottom:4px}}.lead{{margin-top:0;color:#675f53}}.steps,.card{{backgrou
 button{{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}}.story{{font-size:18px}}.refs{{color:#675f53}}input{{width:19px;height:19px;vertical-align:-3px}}.done-card{{opacity:.55}}.master pre{{max-height:560px}}
 </style></head><body><main>
 <h1>{title}</h1><p class="lead">Browser Image Generation Workspace · progress is stored locally in this browser.</p>
-<section class="steps"><h2>Preferred one-conversation workflow</h2><ol><li>Copy the master instruction below and paste it into the web image model once.</li><li>Let the model create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes in the same conversation.</li><li>Only if the website cannot reuse its own images, upload those two reference images once and tell it to continue.</li><li>Download every output and save it in the keyframe folder shown below. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
+<section class="steps"><h2>Autonomous generation workflow</h2><ol><li>Copy the master instruction below and paste it into the web image model once.</li><li>The model must create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes continuously without asking for confirmation or extra uploads.</li><li>Download every output and save it in the keyframe folder shown below. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
 <section class="steps"><h2>Save downloaded images here</h2><p>Save <code>style_reference.png</code>, <code>character_sheet.png</code>, and each <code>scene_XX.png</code> into:</p><code>{html.escape(keyframes_display)}/</code><p>From this page, the same folder is <code>{html.escape(relative_keyframes_dir)}/</code>.</p></section>
 <section class="steps master"><h2>Master instruction</h2><p>Copy this once and paste it into the web image model.</p><pre id="master-instruction">{escaped_master_instruction}</pre><button type="button" onclick="copyPrompt('master-instruction', this)">Copy master instruction</button></section>
 {cards}

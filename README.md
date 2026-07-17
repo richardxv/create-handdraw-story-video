@@ -11,7 +11,7 @@ pip install -r requirements.txt
 python src/run_workflow.py --story-file story.txt
 ```
 
-When keyframes are missing, open `image_generation/web_model_master_instruction.txt` and paste it into a web image model once. It directs the model to create a style reference, character sheet, and every scene in one conversation. If that website cannot reuse images it created earlier, upload the two generated reference images once, then continue. Save images in the story's `keyframes/` directory and resume:
+When keyframes are missing, open `image_generation/prompt_cards.html`, copy the displayed master instruction, and paste it into a web image model once. It directs the model to create a style reference, character sheet, and every scene autonomously without requesting confirmation or extra uploads. Save images in the displayed keyframe directory and resume:
 
 ```powershell
 python src/run_workflow.py --resume

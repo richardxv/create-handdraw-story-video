@@ -34,7 +34,7 @@ Require `id`, `scene_name`, `on_screen_text`, `duration`, `emotion`, `visual_des
 python src\export_web_image_kit.py --source stories\<story-slug>\scenes_with_prompts.json
 ```
 
-Open `image_generation/prompt_cards.html`: copy the displayed master instruction once, then follow its single-conversation generation flow. The workspace explicitly shows the exact keyframe folder for the downloaded `style_reference.png`, `character_sheet.png`, and `scene_XX.png` outputs. If the website cannot reuse images it generated earlier, upload the two references once and tell it to continue. `web_model_master_instruction.txt` and individual prompt cards remain available as fallbacks.
+Open `image_generation/prompt_cards.html` and copy the displayed master instruction once. It requires the web model to generate the style reference, character sheet, and all scenes autonomously without confirmation or extra uploads; if image reuse is unavailable, it must still apply the fixed visual constraints. The workspace explicitly shows the exact keyframe folder for downloaded outputs. `web_model_master_instruction.txt` and individual prompt cards remain available as fallbacks.
 
 Prefer a character-readable medium shot, usually scene 2 or 6, as style reference. Never use a close-up or hands/detail scene as the style anchor. Generate complex close-ups last. Keep proportions, line density, paper texture, watercolour softness, and detail level fixed across camera distances.
 

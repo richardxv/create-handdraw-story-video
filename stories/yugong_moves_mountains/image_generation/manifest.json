@@ -26,8 +26,5 @@
   "preferred_aspect_ratio": "3:4",
   "preferred_handoff": "web_model_master_instruction.txt",
   "initial_uploads": [],
-  "fallback_uploads": [
-    "style_reference.png",
-    "character_sheet.png"
-  ]
+  "interaction_mode": "autonomous_no_confirmation"
 }

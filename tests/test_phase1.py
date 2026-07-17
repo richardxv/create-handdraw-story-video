@@ -92,6 +92,8 @@ class Phase1Tests(unittest.TestCase):
             self.assertIn("style_reference.png", master_instruction)
             self.assertIn("character_sheet.png", master_instruction)
             self.assertIn("scene_01.png", master_instruction)
+            self.assertIn("Do not ask me questions", master_instruction)
+            self.assertIn("Never stop for user confirmation", master_instruction)
             workspace = (output / "prompt_cards.html").read_text(encoding="utf-8")
             self.assertIn('id="master-instruction"', workspace)
             self.assertIn("Copy master instruction", workspace)
