@@ -182,10 +182,12 @@ class MinimalSketchVideoAssembler:
         requested_duration = float(scene.get("duration", 4.5))
         text = str(scene.get("on_screen_text", ""))
         readable_chars = len("".join(text.split()))
-        # Keep only a short reading hold after the reveal. Longer captions receive
-        # a little extra time without forcing every scene to linger.
-        paced_duration = min(3.55, max(2.75, 2.30 + readable_chars * 0.045))
-        duration = min(requested_duration, paced_duration)
+        # User-approved pacing: preserve the quick paired text/colour reveal, then
+        # give the completed illustration 0.5 seconds more breathing room.
+        paced_duration = min(4.05, max(3.25, 2.80 + readable_chars * 0.045))
+        # Add the same 0.5-second hold even when the script's requested duration
+        # was the previous limiting value.
+        duration = min(requested_duration + 0.5, paced_duration)
         ink, _ = self._make_line_art(keyframe)
         monochrome, colour, mono_order, colour_order = self._make_tonal_layers(keyframe, ink.size)
         monochrome_alpha = np.asarray(monochrome.getchannel("A"), dtype=np.uint8)

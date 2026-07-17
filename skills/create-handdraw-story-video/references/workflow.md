@@ -52,4 +52,4 @@ python src\minimal_sketch_video.py `
   --output stories\<story-slug>\<story-slug>.mp4
 ```
 
-Approved defaults: 0.72-second monochrome left-to-right wipe; text/colour start near 0.42 seconds; 1.45-2.35-second synchronized reveal; text starts near `y=195`; scenes last 2.75-3.55 seconds; output is 1080×1440 at 12 fps with no audio.
+Approved defaults: 0.72-second monochrome left-to-right wipe; text/colour start near 0.42 seconds; 1.45-2.35-second synchronized reveal; text starts near `y=195`; scenes last 3.25-4.05 seconds, using the added 0.5 seconds as reading hold time; output is 1080×1440 at 12 fps with no audio.

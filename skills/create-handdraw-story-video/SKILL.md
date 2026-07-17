@@ -34,7 +34,7 @@ Read `WORKFLOW_DESIGN.md` before changing architecture. Read [references/workflo
 - Keep full-line text fixed; fade characters smoothly without shifting prior characters.
 - Place text around `y=195` on 1080×1440 unless composition requires adjustment.
 - Complete text/colour reveal in about 1.45-2.35 seconds.
-- Pace scenes by caption length, normally 2.75-3.55 seconds.
+- Pace scenes by caption length, normally 3.25-4.05 seconds. The extra 0.5 seconds is reading hold time; do not slow the synchronized text/colour reveal.
 - Exclude bottom-edge model marks before tonal conversion.
 - Avoid an intermediate high-contrast line-art stage.
 
