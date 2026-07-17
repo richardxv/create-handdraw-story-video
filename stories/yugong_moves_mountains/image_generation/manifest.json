@@ -15,6 +15,7 @@
     "scene_07"
   ],
   "output_directory": "../keyframes",
+  "keyframe_directory_display": "stories/yugong_moves_mountains/keyframes",
   "accepted_formats": [
     "png",
     "jpg",

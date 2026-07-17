@@ -99,7 +99,7 @@ def run(args: argparse.Namespace) -> int:
     missing, keyframe_report = validate_keyframes(scenes)
 
     if missing:
-        web_manifest = export_web_kit(PROMPTS_PATH, WEB_IMAGE_DIR)
+        web_manifest = export_web_kit(PROMPTS_PATH, WEB_IMAGE_DIR, keyframes_dir=KEYFRAMES)
         package = export_tasks(PROMPTS_PATH, TASKS_PATH, KEYFRAMES, start_at=min(missing))
         # Keep only genuinely missing scenes; existing later images must not be regenerated.
         package["tasks"] = [task for task in package["tasks"] if task["scene_id"] in missing]
@@ -115,9 +115,11 @@ def run(args: argparse.Namespace) -> int:
             recommended_generation_order=web_manifest["generation_order"],
             task_package=str(TASKS_PATH),
             keyframes=keyframe_report,
+            keyframe_directory=web_manifest["keyframe_directory_display"],
         )
         print(f"Paused at keyframe generation. Missing scenes: {missing}")
         print(f"Web image master instruction (recommended): {WEB_IMAGE_DIR / 'web_model_master_instruction.txt'}")
+        print(f"Save downloaded keyframes in: {web_manifest['keyframe_directory_display']}")
         print(f"Fallback prompt-card workspace: {WEB_IMAGE_DIR / 'prompt_cards.html'}")
         print(f"Keyframe generation package: {TASKS_PATH}")
         return 2

@@ -20,7 +20,7 @@ Read `WORKFLOW_DESIGN.md` before changing architecture. Read [references/workflo
 3. Create `stories/<story-slug>/`. Never reuse another story's keyframes.
 4. Save `story.txt` and `script.json`; build `scenes_with_prompts.json` with `src/style_prompt_builder.py`.
 5. Default to Web Image Model mode. Run `src/export_web_image_kit.py` and give the user `web_model_master_instruction.txt` as the single paste-ready handoff.
-6. Have the web model generate the style reference, character sheet, then all scenes in the same conversation. Only if it cannot reuse its own images, ask the user to upload those two generated references once before continuing.
+6. Have the web model generate the style reference, character sheet, then all scenes in the same conversation. Tell the user the exact keyframe folder displayed in the workspace; they must download every output there using the shown filenames. Only if the model cannot reuse its own images, ask the user to upload those two generated references once before continuing.
 7. Use Image Agent mode only when the system can read files, generate images, and save outputs. Export portable `keyframe_generation_tasks.json` in that mode.
 8. Review every keyframe. Reject story mismatches, character drift, style drift, generated text, speech bubbles, logos, signatures, and watermarks.
 9. Render with `src/minimal_sketch_video.py`, naming the formal MP4 after the story. Do not call it a demo.

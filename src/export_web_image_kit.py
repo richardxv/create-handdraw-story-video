@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -120,12 +121,26 @@ Global requirements:
 """
 
 
-def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | None = None) -> dict[str, Any]:
+def export_web_kit(
+    source: Path,
+    output_dir: Path,
+    reference_scene_id: int | None = None,
+    keyframes_dir: Path | None = None,
+) -> dict[str, Any]:
     data = json.loads(source.read_text(encoding="utf-8"))
     scenes = data.get("scenes", [])
     if not scenes:
         raise ValueError("Prompt source contains no scenes")
     output_dir.mkdir(parents=True, exist_ok=True)
+    keyframes_dir = keyframes_dir or output_dir.parent / "keyframes"
+    keyframes_dir.mkdir(parents=True, exist_ok=True)
+    relative_keyframes_dir = Path(
+        os.path.relpath(keyframes_dir.resolve(), output_dir.resolve())
+    ).as_posix()
+    try:
+        keyframes_display = keyframes_dir.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        keyframes_display = str(keyframes_dir.resolve())
 
     reference = _reference_scene(scenes, reference_scene_id)
     reference_prompt = (
@@ -156,7 +171,8 @@ def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | Non
         "mode": "web_image_model",
         "reference_scene_id": int(reference["id"]),
         "generation_order": ["style_reference", "character_sheet", *[f"scene_{i:02d}" for i in order]],
-        "output_directory": "../keyframes",
+        "output_directory": relative_keyframes_dir,
+        "keyframe_directory_display": keyframes_display,
         "accepted_formats": ["png", "jpg", "jpeg", "webp"],
         "preferred_format": "png",
         "preferred_aspect_ratio": "3:4",
@@ -181,7 +197,8 @@ h1{{margin-bottom:4px}}.lead{{margin-top:0;color:#675f53}}.steps,.card{{backgrou
 button{{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}}.story{{font-size:18px}}.refs{{color:#675f53}}input{{width:19px;height:19px;vertical-align:-3px}}.done-card{{opacity:.55}}.master pre{{max-height:560px}}
 </style></head><body><main>
 <h1>{title}</h1><p class="lead">Browser Image Generation Workspace · progress is stored locally in this browser.</p>
-<section class="steps"><h2>Preferred one-conversation workflow</h2><ol><li>Open <code>web_model_master_instruction.txt</code> and paste it into the web image model once.</li><li>Let the model create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes in the same conversation.</li><li>Only if the website cannot reuse its own images, upload those two reference images once and tell it to continue.</li><li>Save scene outputs in <code>../keyframes/</code> with the shown filenames. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
+<section class="steps"><h2>Preferred one-conversation workflow</h2><ol><li>Copy the master instruction below and paste it into the web image model once.</li><li>Let the model create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes in the same conversation.</li><li>Only if the website cannot reuse its own images, upload those two reference images once and tell it to continue.</li><li>Download every output and save it in the keyframe folder shown below. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
+<section class="steps"><h2>Save downloaded images here</h2><p>Save <code>style_reference.png</code>, <code>character_sheet.png</code>, and each <code>scene_XX.png</code> into:</p><code>{html.escape(keyframes_display)}/</code><p>From this page, the same folder is <code>{html.escape(relative_keyframes_dir)}/</code>.</p></section>
 <section class="steps master"><h2>Master instruction</h2><p>Copy this once and paste it into the web image model.</p><pre id="master-instruction">{escaped_master_instruction}</pre><button type="button" onclick="copyPrompt('master-instruction', this)">Copy master instruction</button></section>
 {cards}
 </main><script>
@@ -199,10 +216,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Export a browser-friendly image generation workspace")
     parser.add_argument("--source", type=Path, required=True, help="scenes_with_prompts.json")
     parser.add_argument("--output", type=Path, help="output directory; defaults to <story>/image_generation")
+    parser.add_argument("--keyframes", type=Path, help="directory where downloaded images must be saved")
     parser.add_argument("--reference-scene", type=int, help="scene id for master style reference")
     args = parser.parse_args()
     output = args.output or args.source.parent / "image_generation"
-    manifest = export_web_kit(args.source, output, args.reference_scene)
+    manifest = export_web_kit(args.source, output, args.reference_scene, args.keyframes)
     print(f"Web image workspace: {output / 'prompt_cards.html'}")
     print(f"Reference scene: {manifest['reference_scene_id']}")
 

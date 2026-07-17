@@ -99,6 +99,7 @@ class Phase1Tests(unittest.TestCase):
             self.assertTrue((output / "character_sheet_prompt.txt").exists())
             self.assertEqual(len(list(output.glob("scene_*.txt"))), len(json.loads(source.read_text(encoding="utf-8"))["scenes"]))
             self.assertEqual(manifest["output_directory"], "../keyframes")
+            self.assertTrue(manifest["keyframe_directory_display"].replace("\\", "/").endswith("keyframes"))
             self.assertEqual(manifest["mode"], "web_image_model")
             self.assertEqual(manifest["preferred_handoff"], "web_model_master_instruction.txt")
 
