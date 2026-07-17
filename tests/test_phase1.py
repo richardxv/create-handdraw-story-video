@@ -87,11 +87,17 @@ class Phase1Tests(unittest.TestCase):
             output = Path(directory) / "image_generation"
             manifest = export_web_kit(source, output)
             self.assertTrue((output / "prompt_cards.html").exists())
+            self.assertTrue((output / "web_model_master_instruction.txt").exists())
+            master_instruction = (output / "web_model_master_instruction.txt").read_text(encoding="utf-8")
+            self.assertIn("style_reference.png", master_instruction)
+            self.assertIn("character_sheet.png", master_instruction)
+            self.assertIn("scene_01.png", master_instruction)
             self.assertTrue((output / "style_reference_prompt.txt").exists())
             self.assertTrue((output / "character_sheet_prompt.txt").exists())
             self.assertEqual(len(list(output.glob("scene_*.txt"))), len(json.loads(source.read_text(encoding="utf-8"))["scenes"]))
             self.assertEqual(manifest["output_directory"], "../keyframes")
             self.assertEqual(manifest["mode"], "web_image_model")
+            self.assertEqual(manifest["preferred_handoff"], "web_model_master_instruction.txt")
 
 
 if __name__ == "__main__":

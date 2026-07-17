@@ -22,5 +22,11 @@
     "webp"
   ],
   "preferred_format": "png",
-  "preferred_aspect_ratio": "3:4"
+  "preferred_aspect_ratio": "3:4",
+  "preferred_handoff": "web_model_master_instruction.txt",
+  "initial_uploads": [],
+  "fallback_uploads": [
+    "style_reference.png",
+    "character_sheet.png"
+  ]
 }

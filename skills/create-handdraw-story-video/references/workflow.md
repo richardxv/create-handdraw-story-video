@@ -8,6 +8,7 @@ stories/<story-slug>/
   script.json
   scenes_with_prompts.json
   image_generation/
+    web_model_master_instruction.txt
     prompt_cards.html
     manifest.json
     style_reference_prompt.txt
@@ -33,7 +34,7 @@ Require `id`, `scene_name`, `on_screen_text`, `duration`, `emotion`, `visual_des
 python src\export_web_image_kit.py --source stories\<story-slug>\scenes_with_prompts.json
 ```
 
-Open `image_generation/prompt_cards.html`. Generate `style_reference.png`, then `character_sheet.png`, then scenes in the manifest order. Upload both references for every scene when supported. Save outputs in `keyframes/` with exact filenames.
+Open `image_generation/web_model_master_instruction.txt` and paste it into the chosen web image model once. It directs the model to generate `style_reference.png`, `character_sheet.png`, and all scenes in manifest order. If the website cannot reuse images it generated earlier, upload those two references once and tell it to continue. Save outputs in `keyframes/` with exact filenames. `prompt_cards.html` remains a fallback for websites that need individual prompts.
 
 Prefer a character-readable medium shot, usually scene 2 or 6, as style reference. Never use a close-up or hands/detail scene as the style anchor. Generate complex close-ups last. Keep proportions, line density, paper texture, watercolour softness, and detail level fixed across camera distances.
 

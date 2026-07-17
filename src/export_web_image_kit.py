@@ -69,6 +69,55 @@ def _card(scene: dict[str, Any]) -> str:
     </article>"""
 
 
+def _master_instruction(
+    data: dict[str, Any],
+    scenes: list[dict[str, Any]],
+    reference_prompt: str,
+    character_prompt: str,
+    order: list[int],
+) -> str:
+    """Create one paste-ready instruction for a web image-model conversation."""
+    by_id = {int(scene["id"]): scene for scene in scenes}
+    scene_blocks = []
+    for scene_id in order:
+        scene = by_id[scene_id]
+        scene_blocks.append(
+            f"## Scene {scene_id:02d} -> scene_{scene_id:02d}.png\n"
+            f"Story caption (do not render it in the image): {scene.get('on_screen_text', '')}\n\n"
+            f"{str(scene.get('prompt', '')).strip()}\n\n{CLOSEUP_GUARD}"
+        )
+
+    return f"""You are the image-production assistant for one complete hand-drawn children's story video.
+Complete this whole image set in this same conversation. Do not ask me to repeat individual scene prompts.
+
+Story title: {data.get('story_title', 'Untitled story')}
+Theme: {data.get('theme', '')}
+
+Production sequence:
+1. First generate one 3:4 portrait master style image named style_reference.png using the prompt below.
+2. Then generate one 3:4 portrait character consistency image named character_sheet.png, using the style image you just made as its visual reference.
+3. Then generate every scene below in the listed order. Reuse both generated references for every scene and keep character identity, proportions, ink density, paper texture, palette, and detail level fixed across the whole set.
+
+If this website cannot reuse images created earlier in the same conversation, stop after the two reference images and ask me only to upload style_reference.png and character_sheet.png once. After I upload them, continue with every remaining scene without asking for new prompts.
+
+Global requirements:
+- Prefer 1080x1440 PNG, 3:4 portrait.
+- Create artwork only: never render captions, speech bubbles, letters, signs, logos, signatures, or watermarks.
+- Keep generous warm off-white paper space and a restrained hand-drawn picture-book look.
+- Generate each numbered scene as a separate image. Preserve the target filename in your response so I can save it correctly.
+
+## style_reference.png
+{reference_prompt}
+
+## character_sheet.png
+{character_prompt}
+
+## Scene production list
+
+{"\n\n".join(scene_blocks)}
+"""
+
+
 def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | None = None) -> dict[str, Any]:
     data = json.loads(source.read_text(encoding="utf-8"))
     scenes = data.get("scenes", [])
@@ -98,6 +147,8 @@ def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | Non
         (output_dir / f"scene_{scene_id:02d}.txt").write_text(prompt, encoding="utf-8")
 
     order = _generation_order(scenes)
+    master_instruction = _master_instruction(data, scenes, reference_prompt, character_prompt, order)
+    (output_dir / "web_model_master_instruction.txt").write_text(master_instruction, encoding="utf-8")
     manifest = {
         "story_title": data.get("story_title", ""),
         "mode": "web_image_model",
@@ -107,6 +158,9 @@ def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | Non
         "accepted_formats": ["png", "jpg", "jpeg", "webp"],
         "preferred_format": "png",
         "preferred_aspect_ratio": "3:4",
+        "preferred_handoff": "web_model_master_instruction.txt",
+        "initial_uploads": [],
+        "fallback_uploads": ["style_reference.png", "character_sheet.png"],
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -124,7 +178,7 @@ h1{{margin-bottom:4px}}.lead{{margin-top:0;color:#675f53}}.steps,.card{{backgrou
 button{{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}}.story{{font-size:18px}}.refs{{color:#675f53}}input{{width:19px;height:19px;vertical-align:-3px}}.done-card{{opacity:.55}}
 </style></head><body><main>
 <h1>{title}</h1><p class="lead">Browser Image Generation Workspace · progress is stored locally in this browser.</p>
-<section class="steps"><h2>Workflow</h2><ol><li>Generate <b>style_reference.png</b> from <code>style_reference_prompt.txt</code>.</li><li>Upload it and generate <b>character_sheet.png</b> from <code>character_sheet_prompt.txt</code>.</li><li>For every scene, upload both references, copy the card prompt, generate one image, and save it in <code>../keyframes/</code> with the shown filename.</li><li>Prefer 3:4 PNG. Reject text, speech bubbles, signatures, logos, watermarks, character drift, and style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
+<section class="steps"><h2>Preferred one-conversation workflow</h2><ol><li>Open <code>web_model_master_instruction.txt</code> and paste it into the web image model once.</li><li>Let the model create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes in the same conversation.</li><li>Only if the website cannot reuse its own images, upload those two reference images once and tell it to continue.</li><li>Save scene outputs in <code>../keyframes/</code> with the shown filenames. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
 {cards}
 </main><script>
 const key='web-image-kit:{html.escape(str(data.get('story_title','story')))}';

@@ -110,13 +110,15 @@ def run(args: argparse.Namespace) -> int:
             story_title=data.get("story_title"),
             missing_scene_ids=missing,
             preferred_generation_mode="web_image_model",
+            web_image_master_instruction=str(WEB_IMAGE_DIR / "web_model_master_instruction.txt"),
             web_image_workspace=str(WEB_IMAGE_DIR / "prompt_cards.html"),
             recommended_generation_order=web_manifest["generation_order"],
             task_package=str(TASKS_PATH),
             keyframes=keyframe_report,
         )
         print(f"Paused at keyframe generation. Missing scenes: {missing}")
-        print(f"Web image workspace (recommended): {WEB_IMAGE_DIR / 'prompt_cards.html'}")
+        print(f"Web image master instruction (recommended): {WEB_IMAGE_DIR / 'web_model_master_instruction.txt'}")
+        print(f"Fallback prompt-card workspace: {WEB_IMAGE_DIR / 'prompt_cards.html'}")
         print(f"Keyframe generation package: {TASKS_PATH}")
         return 2
 

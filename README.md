@@ -11,7 +11,7 @@ pip install -r requirements.txt
 python src/run_workflow.py --story-file story.txt
 ```
 
-When keyframes are missing, open the generated `image_generation/prompt_cards.html`. Generate the style reference and character sheet first, then create every scene with the same references. Save images in the story's `keyframes/` directory and resume:
+When keyframes are missing, open `image_generation/web_model_master_instruction.txt` and paste it into a web image model once. It directs the model to create a style reference, character sheet, and every scene in one conversation. If that website cannot reuse images it created earlier, upload the two generated reference images once, then continue. Save images in the story's `keyframes/` directory and resume:
 
 ```powershell
 python src/run_workflow.py --resume
@@ -19,7 +19,7 @@ python src/run_workflow.py --resume
 
 ## Image generation modes
 
-- **Web Image Model (default):** browser prompt cards with copy buttons, reference prompts, recommended order, filenames, and local progress tracking.
+- **Web Image Model (default):** one paste-ready master instruction for the whole story; prompt cards remain as a fallback for limited websites.
 - **Image Agent (optional):** portable `keyframe_generation_tasks.json` with paths relative to the task file.
 
 ## Codex Skill
