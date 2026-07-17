@@ -87,11 +87,13 @@ def _master_instruction(
             f"{str(scene.get('prompt', '')).strip()}\n\n{CLOSEUP_GUARD}"
         )
 
+    theme = str(data.get("theme", "")).strip()
+    theme_line = f"Theme: {theme}\n" if theme else ""
     return f"""You are the image-production assistant for one complete hand-drawn children's story video.
 Complete this whole image set in this same conversation. Do not ask me to repeat individual scene prompts.
 
 Story title: {data.get('story_title', 'Untitled story')}
-Theme: {data.get('theme', '')}
+{theme_line}
 
 Production sequence:
 1. First generate one 3:4 portrait master style image named style_reference.png using the prompt below.

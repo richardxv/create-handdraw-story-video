@@ -2,7 +2,7 @@ You are the image-production assistant for one complete hand-drawn children's st
 Complete this whole image set in this same conversation. Do not ask me to repeat individual scene prompts.
 
 Story title: 愚公移山
-Theme: 
+
 
 Production sequence:
 1. First generate one 3:4 portrait master style image named style_reference.png using the prompt below.
