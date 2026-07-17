@@ -166,6 +166,7 @@ def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | Non
 
     title = html.escape(str(data.get("story_title", "Hand-drawn Story")))
     cards = "\n".join(_card(scene) for scene in scenes)
+    escaped_master_instruction = html.escape(master_instruction)
     order_text = " → ".join(manifest["generation_order"])
     page = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -175,10 +176,11 @@ def export_web_kit(source: Path, output_dir: Path, reference_scene_id: int | Non
 body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}}main{{max-width:980px;margin:auto;padding:32px 20px 80px}}
 h1{{margin-bottom:4px}}.lead{{margin-top:0;color:#675f53}}.steps,.card{{background:var(--card);border:1px solid #ded5c6;border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 3px 12px #6d5d4512}}
 .card-head{{display:flex;justify-content:space-between;gap:12px;align-items:center;font-weight:700}}code{{background:#eee6d8;padding:4px 8px;border-radius:7px}}pre{{white-space:pre-wrap;max-height:360px;overflow:auto;background:#24211d;color:#f9f3e7;padding:16px;border-radius:12px;font:13px/1.55 ui-monospace,monospace}}
-button{{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}}.story{{font-size:18px}}.refs{{color:#675f53}}input{{width:19px;height:19px;vertical-align:-3px}}.done-card{{opacity:.55}}
+button{{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:white;font-weight:700;cursor:pointer}}.story{{font-size:18px}}.refs{{color:#675f53}}input{{width:19px;height:19px;vertical-align:-3px}}.done-card{{opacity:.55}}.master pre{{max-height:560px}}
 </style></head><body><main>
 <h1>{title}</h1><p class="lead">Browser Image Generation Workspace · progress is stored locally in this browser.</p>
 <section class="steps"><h2>Preferred one-conversation workflow</h2><ol><li>Open <code>web_model_master_instruction.txt</code> and paste it into the web image model once.</li><li>Let the model create <b>style_reference.png</b>, <b>character_sheet.png</b>, and all scenes in the same conversation.</li><li>Only if the website cannot reuse its own images, upload those two reference images once and tell it to continue.</li><li>Save scene outputs in <code>../keyframes/</code> with the shown filenames. Prefer 3:4 PNG and reject generated text, watermarks, or character/style drift.</li></ol><p><b>Recommended order:</b> {html.escape(order_text)}</p></section>
+<section class="steps master"><h2>Master instruction</h2><p>Copy this once and paste it into the web image model.</p><pre id="master-instruction">{escaped_master_instruction}</pre><button type="button" onclick="copyPrompt('master-instruction', this)">Copy master instruction</button></section>
 {cards}
 </main><script>
 const key='web-image-kit:{html.escape(str(data.get('story_title','story')))}';
